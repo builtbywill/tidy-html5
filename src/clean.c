@@ -1815,7 +1815,7 @@ void TY_(NormalizeSpaces)(Lexer *lexer, Node *node)
 
                 p = TY_(PutUTF8)(p, c);
             }
-            node->end = p - lexer->lexbuf;
+            node->end = (uint)(p - lexer->lexbuf);
         }
 
         node = node->next;
@@ -2517,7 +2517,7 @@ void TY_(DowngradeTypography)(TidyDocImpl* doc, Node* node)
                 p = TY_(PutUTF8)(p, c);
             }
 
-            node->end = p - lexer->lexbuf;
+            node->end = (uint)(p - lexer->lexbuf);
         }
 
         if (node->content)

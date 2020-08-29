@@ -378,7 +378,7 @@ ctmbstr TIDY_CALL       tidyOptGetDefault( TidyOption topt )
     if ( option && option->id == TidyDoctype )
     {
         const TidyOptionImpl* newopt = TY_(getOption)( TidyDoctypeMode );
-        return TY_(GetPickListLabelForPick)( TidyDoctypeMode, newopt->dflt );
+        return TY_(GetPickListLabelForPick)( TidyDoctypeMode, (uint)newopt->dflt );
     }
     if ( option && option->type == TidyString )
         return option->pdflt; /* Issue #306 - fix an old typo hidden by a cast! */
@@ -440,7 +440,7 @@ ctmbstr TIDY_CALL       tidyOptGetValue( TidyDoc tdoc, TidyOptionId optId )
         if ( optId == TidyDoctype )
         {
             /* Special case for TidyDoctype, because it has a picklist and is a string. */
-            uint pick = tidyOptGetInt( tdoc, TidyDoctypeMode );
+            uint pick = (uint) tidyOptGetInt(tdoc, TidyDoctypeMode);
             if ( pick != TidyDoctypeUser )
             {
                 optval = TY_(GetPickListLabelForPick)( TidyDoctypeMode, pick );
@@ -523,13 +523,13 @@ Bool TIDY_CALL        tidyOptSetBool( TidyDoc tdoc, TidyOptionId optId, Bool val
 
 ctmbstr TIDY_CALL       tidyOptGetEncName( TidyDoc tdoc, TidyOptionId optId )
 {
-  uint enc = tidyOptGetInt( tdoc, optId );
+  uint enc = (uint) tidyOptGetInt( tdoc, optId );
   return TY_(CharEncodingOptName)( enc );
 }
 
 ctmbstr TIDY_CALL       tidyOptGetCurrPick( TidyDoc tdoc, TidyOptionId optId )
 {
-    uint pick = tidyOptGetInt( tdoc, optId );
+    uint pick = (uint) tidyOptGetInt( tdoc, optId );
     return TY_(GetPickListLabelForPick)( optId, pick );
 }
 

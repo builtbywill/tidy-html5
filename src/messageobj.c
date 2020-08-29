@@ -555,7 +555,7 @@ static struct printfArg* BuildArgArray( TidyDocImpl *doc, ctmbstr fmt, va_list a
         if( ( c = *p++ ) == '%' )
             continue; /* skip %% case */
 
-        pos = p - fmt - 2; /* p already incremented twice */
+        pos = (int)(p - fmt - 2); /* p already incremented twice */
 
         /* width -- width via parameter */
         if (c == '*')
@@ -632,7 +632,7 @@ static struct printfArg* BuildArgArray( TidyDocImpl *doc, ctmbstr fmt, va_list a
 
         /* position and format */
         nas[cn].formatStart = pos;
-        nas[cn].formatLength = (p - fmt) - pos;
+        nas[cn].formatLength = (int)((p - fmt) - pos);
         
         /* the format string exceeds the buffer length */
         if ( nas[cn].formatLength >= FORMAT_LENGTH )

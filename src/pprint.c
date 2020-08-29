@@ -524,8 +524,10 @@ static void ResetLineAfterWrap( TidyPrintImpl* pprint )
 
         if ( ! IsWrapInAttrVal(pprint) )
         {
-            while ( q < end && *q == ' ' )
-                ++q, ++pprint->wraphere;
+            while ( q < end && *q == ' ' ) {
+                ++q;
+                ++pprint->wraphere;
+            }
         }
 
         while ( q < end )
@@ -1638,7 +1640,7 @@ static void PPrintXmlDecl( TidyDocImpl* doc, uint indent, Node *node )
     saveWrap = WrapOff( doc );
 
     /* no case translation for XML declaration pseudo attributes */
-    ucAttrs = cfg(doc, TidyUpperCaseAttrs);
+    ucAttrs = (Bool) cfg(doc, TidyUpperCaseAttrs);
     TY_(SetOptionInt)(doc, TidyUpperCaseAttrs, no);
 
     AddString( pprint, "<?xml" );

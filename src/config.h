@@ -398,7 +398,7 @@ ctmbstr TY_(_cfgGetString)( TidyDocImpl* doc, TidyOptionId optId );
 /* Release build macros for speed */
 
 /** Access the raw, non-string uint value of the given option ID. */
-#define cfg(doc, id)            ((doc)->config.value[ (id) ].v)
+#define cfg(doc, id)            ((uint) (doc)->config.value[ (id) ].v)
 
 /** Access the Bool value of the given option ID. */
 #define cfgBool(doc, id)        ((Bool) cfg(doc, id))

@@ -1915,10 +1915,10 @@ static int  SaveConfigToStream( TidyDocImpl* doc, StreamOut* out )
           else if ( dtmode == option_defs[TidyDoctypeMode].dflt )
             continue;
           else
-            rc = WriteOptionPick( option, dtmode, out );
+            rc = WriteOptionPick( option, (uint) dtmode, out );
         }
         else if ( option->pickList)
-          rc = WriteOptionPick( option, val->v, out );
+          rc = WriteOptionPick( option, (uint) val->v, out );
         else
         {
           switch ( option->type )
@@ -1927,7 +1927,7 @@ static int  SaveConfigToStream( TidyDocImpl* doc, StreamOut* out )
             rc = WriteOptionString( option, val->p, out );
             break;
           case TidyInteger:
-            rc = WriteOptionInt( option, val->v, out );
+            rc = WriteOptionInt( option, (uint) val->v, out );
             break;
           case TidyBoolean:
             rc = WriteOptionBool( option, val->v ? yes : no, out );

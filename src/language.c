@@ -330,7 +330,7 @@ tmbstr TY_(tidyNormalizedLocaleName)( ctmbstr locale )
      4th and 5th if they exist. The worst that can happen is a
      junk language that doesn't exist and won't be set. */
     
-    len = strlen( search );
+    len = (uint) strlen( search );
     len = ( len <= 5 ? len : 5 );
     
     for ( i = 0; i < len; i++ )
